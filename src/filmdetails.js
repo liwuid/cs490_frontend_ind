@@ -6,10 +6,17 @@ function FilmDetails() {
     const [filmdetails, setFilm] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/filmdetails/${id}`)
+        fetch(`http://localhost:5000/film/${id}`)
             .then((response) => response.json())
             .then((data) => {
-                setFilm(data);
+                const film = data[0];
+                setFilm({ 
+                    film_id: film[0],
+                    title: film[1],
+                    category: film[2],
+                    rented: film[3],
+                    //add more 
+                })
             })
             .catch((error) => console.error("Error fetching film details:", error));
     }, [id]);
@@ -20,14 +27,16 @@ function FilmDetails() {
         <div className="film-details">
             <h1>{filmdetails.title}</h1>
             <p><strong>Film ID:</strong> {filmdetails.film_id}</p>
-            <p><strong>Description:</strong> {filmdetails.description}</p>
-            <p><strong>Release Year:</strong> {filmdetails.release_year}</p>
+            <p><strong>Title:</strong> {filmdetails.title}</p>
             <p><strong>Category:</strong> {filmdetails.category}</p>
-            <p><strong>Language:</strong> {filmdetails.language}</p>
-            <p><strong>Rating:</strong> {filmdetails.rating}</p>
-            <p><strong>Actors:</strong> {filmdetails.actors}</p>
+            <p><strong>Rented:</strong> {filmdetails.rented} times</p>
         </div>
     );
 }
 
+//add later
+//<p><strong>Description:</strong> {filmdetails.description}</p>
+//<p><strong>Language:</strong> {filmdetails.language}</p>
+//<p><strong>Rating:</strong> {filmdetails.rating}</p>
+//<p><strong>Actors:</strong> {filmdetails.actors}</p>
 export default FilmDetails;
