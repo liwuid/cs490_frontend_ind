@@ -22,7 +22,7 @@ function FilmDetails() {
             .catch((error) => console.error("Error fetching film details:", error));
     }, [id]);
     if (!filmdetails) {
-        return <div>Loading...</div>;
+        return <div>Fetching film details...</div>;
     }                           
     return (
         <div className="film-details">
