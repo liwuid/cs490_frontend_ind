@@ -35,3 +35,31 @@
   transform: scale(1.1);
 }
 
+.top-five-actors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actor-name {
+  font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.actor-item {
+  text-align: center;
+  width: 120px;
+} 
+
+.actor-image {
+  width: 80px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.actor-image:hover {
+  transform: scale(1.1);
+}

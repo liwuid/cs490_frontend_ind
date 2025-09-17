@@ -13,9 +13,10 @@ function FilmDetails() {
                 setFilm({ 
                     film_id: film[0],
                     title: film[1],
-                    category: film[2],
-                    rented: film[3],
-                    //add more 
+                    description: film[2],   
+                    release_year: film[3],
+                    category: film[4],
+                    language: film[5]
                 })
             })
             .catch((error) => console.error("Error fetching film details:", error));
@@ -28,15 +29,16 @@ function FilmDetails() {
             <h1>{filmdetails.title}</h1>
             <p><strong>Film ID:</strong> {filmdetails.film_id}</p>
             <p><strong>Title:</strong> {filmdetails.title}</p>
+            <p><strong>Description:</strong> {filmdetails.description}</p>
+            <p><strong>Release Year:</strong> {filmdetails.release_year} </p>
             <p><strong>Category:</strong> {filmdetails.category}</p>
-            <p><strong>Rented:</strong> {filmdetails.rented} times</p>
+            <p><strong>Language:</strong> {filmdetails.language}</p>
         </div>
     );
 }
 
 //add later
-//<p><strong>Description:</strong> {filmdetails.description}</p>
-//<p><strong>Language:</strong> {filmdetails.language}</p>
 //<p><strong>Rating:</strong> {filmdetails.rating}</p>
 //<p><strong>Actors:</strong> {filmdetails.actors}</p>
+//<p><strong>Rented:</strong> {filmdetails.rented} times</p>
 export default FilmDetails;
