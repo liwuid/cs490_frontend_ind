@@ -44,7 +44,7 @@ function FilmsPage() {
                             <tr key={film.id}>
                                 <td>{film.id}</td>
                                 <td>
-                                    <Link to={`/films/${film.id}`} className="film-link-table">
+                                    <Link to={`/film/${film.id}`} className="film-link-table">
                                         {film.title}
                                     </Link>
                                 </td>
