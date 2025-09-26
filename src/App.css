@@ -80,6 +80,11 @@
   border: 2px solid #ccc;
 }
 
+.films-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
 .films-table td {
   font-size: 17px;
   padding: 10px;
