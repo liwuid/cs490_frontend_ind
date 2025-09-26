@@ -62,6 +62,9 @@
 .film-link:hover {
   color: #feb103;
 }
+.film-link-table:hover {
+  color: #feb103;
+}
 
 .film-genre {
   font-family: 'Courier New', Courier, monospace;
@@ -69,9 +72,30 @@
   color: #666;
 }
 
-.pagination {
-  margin-top: 20px;
-  text-align: center;
+.scrollable {
+  max-height: 400px;
+  max-width: 500px;
+  overflow-y: auto;
+  margin-top: 15px;
+  border: 2px solid #ccc;
+}
+
+.films-table td {
+  font-size: 17px;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.films-table th {
+  font-size: 23px;
+  background: #cbcbcb;
+}
+
+.film-link-table {
+  font-size: 17px;
+  color:black;
+  text-decoration: none;
 }
 
 .page-button {
@@ -112,6 +136,8 @@
   width: 80px;
   height: auto;
   border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .actor-image:hover {

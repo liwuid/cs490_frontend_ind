@@ -3,6 +3,7 @@ import FilmDetails from "./filmdetails";
 import ActorDetails from "./actordetails";
 import LandingPage from "./landingpage";
 import FilmsPage from "./filmspage";
+import CustomersPage from "./customerspage";
 import './App.css';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
                 <Route path="/film/:id" element={<FilmDetails />} />
                 <Route path="/actor/:id" element={<ActorDetails />} />
                 <Route path="/films/search" element={<FilmsPage />} />
-                <Route path="/customers" element={<div>Customer Page (to be implemented)</div>} />
+                <Route path="/customers" element={<CustomersPage />} />
             </Routes>
             </div>
         </Router>
