@@ -3,22 +3,28 @@ import "./App.css"
 
 function CustomersPage() {
     const [customer, setCustomer] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const customersPerPage = 10;
+    const [pagination, setPagination] = useState(null);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/customers")
-        .then((response) => response.json())
-        .then((data) => {
-            const customerData = data.map(customer => ({
-                id: customer[0],
-                firstname: customer[1],
-                lastname: customer[3],
-            }));
-            setCustomer(customerData);
-        })
-        .catch((error) => console.error("Error fetching customers:", error));
+        const fetchCustomers = async (page=1) => {
+            try {
+                const response = fetch(`https://localhost:5000/customers?page=${page}`);
+                const data = (await response).json();
+
+                const dataCustomers = data.customers.map((customer) => ({
+                    id: customer[0],
+                    firstname: customer[1],
+                    lastname: customer[2],
+                }));
+
+                setCustomer(dataCustomers);
+                setPagination(data.pagination);
+            } catch (error) {
+                console.error("Error fetching custoemrs:", error);
+            }
+        };
+        fetchCustomers(1);
     }, []);
-}
+};
 
 export default CustomersPage;
