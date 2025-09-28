@@ -35,7 +35,7 @@ function CustomersPage() {
 
     return (
         <div className="customer-page">
-            <h1>Customers</h1>
+            <h1 className="customer-title">Customers</h1>
             <div className="customer-table-wrap">
                 <table className="customer-table">
                     <thead>
@@ -59,7 +59,7 @@ function CustomersPage() {
                     </tbody>
                 </table>
             </div>
-            <Stack style={{ marginTop: "40px", alignItems: "center"}}>
+            <Stack style={{ alignItems: "center"}}>
                 <Pagination
                     count={pagination.pages}
                     page={pagination.page}
