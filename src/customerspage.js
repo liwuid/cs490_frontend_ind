@@ -16,6 +16,7 @@ function CustomersPage() {
                 id: customer[0],
                 firstname: customer[1],
                 lastname: customer[2],
+                email: customer[3],
             }));
 
             setCustomers(dataCustomers);
@@ -42,6 +43,7 @@ function CustomersPage() {
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
 
@@ -51,17 +53,18 @@ function CustomersPage() {
                                 <td>{customer.id}</td>
                                 <td>{customer.firstname}</td>
                                 <td>{customer.lastname}</td>
+                                <td>{customer.email}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <Stack spacing={2} style={{ marginTop: "20px", alignItems: "center"}}>
+            <Stack style={{ marginTop: "40px", alignItems: "center"}}>
                 <Pagination
                     count={pagination.pages}
                     page={pagination.page}
                     onChange={pageChange}
-                    color="primary"
+                    color="standard"
                 />
             </Stack>
         </div>

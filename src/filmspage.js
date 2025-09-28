@@ -14,6 +14,8 @@ function FilmsPage() {
                 id: film[0],
                 title: film[1],
                 genre: film[2],
+                rating: film[3],
+                release_year: film[4],
             }));
             setFilms(filmsData);
         })
@@ -22,7 +24,7 @@ function FilmsPage() {
 
     return (
         <div className="films-page">
-            <h1 className="films-title">Films</h1>
+            <h1 className="films-title">Search for Films</h1>
             <input 
                 type="text"
                 placeholder="Search films by title, actor or genre..."
@@ -37,6 +39,8 @@ function FilmsPage() {
                             <th>ID</th>
                             <th>Title</th>
                             <th>Genre</th>
+                            <th>Rating</th>
+                            <th>Release Year</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +53,8 @@ function FilmsPage() {
                                     </Link>
                                 </td>
                                 <td>{film.genre}</td>
+                                <td>{film.rating}</td>
+                                <td>{film.release_year}</td>
                             </tr>
                         ))}
                     </tbody>

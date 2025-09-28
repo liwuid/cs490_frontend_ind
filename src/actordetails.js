@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function ActorDetails() {
@@ -51,7 +52,11 @@ function ActorDetails() {
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {films.map((film) => (
                     <div key={film.id} style={{ margin: '10px', border: '1px solid #ccc', padding: '10px', width: '200px' }}>
-                        <h3>{film.title}</h3>
+                        <h3>
+                            <Link to={`/film/${film.id}`} className="film-link-table">
+                                {film.title}
+                            </Link>
+                        </h3>
                         <p><strong>Times Rented:</strong> {film.rentals}</p>
                     </div>
                 ))}
