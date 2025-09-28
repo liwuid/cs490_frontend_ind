@@ -32,7 +32,8 @@ function LandingPage() {
 
     return (
         <div className="Sakila-DB">
-            <h1>Top Five Films</h1>
+            <h1>Top 5 Films</h1>
+            <h2>The top five most popular and rented movies in the Sakila database.</h2>
             <div className="top-five-films">
                 {topfivefilms.map((film) => (
                     <div key={film.id} className="film-item">
@@ -48,7 +49,8 @@ function LandingPage() {
                 ))}
             </div>
 
-        <h1>Top Five Actors</h1>
+        <h1>Top 5 Actors</h1>
+        <h2>Actors featured in some of the most rented movies.</h2>
             <div className="top-five-actors">
                 {topfiveactors.map((actor) => (
                     <div key={actor.id} className="actor-item">
