@@ -18,6 +18,14 @@ function App() {
                         <Link to="/" className="nav-link">Home</Link>
                         <Link to="/films/search" className="nav-link">Films</Link>
                         <Link to="/customers" className="nav-link">Customers</Link>
+                        <div className="nav-center">
+                            <img
+                                src="https://cdn3d.iconscout.com/3d/premium/thumb/3-d-movie-3d-icon-png-download-3902087.png"
+                                alt="icon"
+                                className="nav-icon"
+                            />
+                            <span className="nav-title">Sakila DB</span>
+                        </div>
                     </nav>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />

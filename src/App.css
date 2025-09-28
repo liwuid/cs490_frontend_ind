@@ -1,17 +1,17 @@
 body {
-  background-color: #ffffff;
-  color: #070707;
+  background: linear-gradient(180deg, #fffdf7, #fef4e5);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .Sakila-DB {
-  background-color: #fafafa;
   color:#152734;
-  font-family: 'Arial Black', Gadget, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
-  font-size: 29px;
+  font-size: 23px;
   text-align: center;
-  margin-top: 20px;
+  margin: 30px 0 15px;
 }
 
 .top-five-films {
@@ -23,40 +23,43 @@ body {
 }
 
 .film-title {
-  font-family: 'Lucida Console', Monaco, monospace;
-  font-size: 23px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
   margin-top: 10px;
 }
 
 .film-item {
   text-align: center;
   width: 150px;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  padding: 10px;
+  background-color: #fffefb;
+  border-radius: 14px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .film-item:hover {
   transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
 
 .film-image {
-  width: 100px;
-  height: auto;
+  width: 200px;
+  height: 200px;
+  filter:  saturate(1.5) brightness(0.7) contrast(1.3);
+  margin-left: -25px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s;
 }
 
 .film-image:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .search-bar {
-  width: 34.5%;
-  height: 30px;
+  width: 78%;
+  height: 25px;
   padding: 6px;
   font-size: 18px;
   border: 2px solid #b1b1b1;
@@ -74,7 +77,7 @@ body {
 }
 
 .film-link {
-  font-family: 'Lucida Console', Monaco, monospace;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 23px;
   text-decoration: none;
   color: #333;
@@ -88,40 +91,45 @@ body {
 }
 
 .film-genre {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   color: #000000;
 }
 
 .scrollable {
-  max-height: 400px;
-  max-width: 500px;
+  max-height: 500px;
+  max-width: 1000px;
   overflow-y: auto;
   margin-top: 15px;
   border: 2px solid #ccc;
 }
 
 .films-page {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .films-table {
-  max-width: 500px;
+  width: 100%;
   table-layout: fixed;
+  background-color: #fffefb;
 }
 
 .films-table td {
   font-size: 17px;
-  padding: 10px;
+  padding: 20px;
   text-align: left;
   border-bottom: 1px solid #7b7b7b;
 }
 
 .films-table th {
-  font-size: 23px;
-  background: #fdfdfd;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #ddd
 }
 
 .film-link-table {
@@ -140,7 +148,7 @@ body {
 }
 
 .active.page {
-  background-color: #333;
+  background-color: #ff7b00;
   color: white;
   border: none;
 }
@@ -154,7 +162,7 @@ body {
 }
 
 .actor-name {
-  font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
   margin-top: 8px;
 }
@@ -165,11 +173,13 @@ body {
 } 
 
 .actor-image {
-  width: 100px;
-  height: auto;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.2s;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
 }
 
 .actor-image:hover {
@@ -191,6 +201,7 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 40px;
+  background-color:white;
 }
 
 .customer-table th {
@@ -214,11 +225,33 @@ body {
 }
 
 .navbar {
+  position: relative;
   display: flex;
-  background-color: #223c4e;
+  align-items: center;
+  gap: 15px;
+  background-color: #45466e;
   padding: 12px 0;
-  justify-content: left;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.nav-center {
+  position: absolute;
+  left: 80%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.nav-icon {
+  filter: brightness(0.88) contrast(1.4);
+  width: 50px;
+  height: 50px;
+}
+
+.nav-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
 }
 
 .nav-link {
@@ -234,7 +267,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #152734;
-  color: rgb(236, 198, 6);
+  background-color: #5c5d89;
+  color: #f4f4f4;
   
 }

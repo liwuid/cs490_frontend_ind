@@ -38,7 +38,7 @@ function LandingPage() {
                     <div key={film.id} className="film-item">
                         <Link to={`/film/${film.id}`}>
                             <img
-                            src="https://cdn-icons-png.flaticon.com/512/2503/2503508.png"
+                            src="https://cdn-icons-png.flaticon.com/512/4524/4524384.png"
                             alt={film.title}
                             className="film-image"
                             />
@@ -54,7 +54,7 @@ function LandingPage() {
                     <div key={actor.id} className="actor-item">
                         <Link to={`/actor/${actor.id}`}>
                         <img
-                            src="https://cdn-icons-png.flaticon.com/512/5987/5987424.png"
+                            src="https://static.vecteezy.com/system/resources/previews/024/677/958/non_2x/3d-icon-of-men-profile-people-free-png.png"
                             alt="{actor.name}"
                             className="actor-image"
                         />
