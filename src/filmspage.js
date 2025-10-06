@@ -5,9 +5,13 @@ import "./App.css";
 function FilmsPage() {
     const [films, setFilms] = useState([]);
     const [search, setSearch] = useState("");
+    const [filmID, setFilmID] = useState("");
+    const [customerID, setCustomerID] = useState("");
+    const [message, setMessage] = useState("");
+    const [filmCount, setFilmCount] = useState(0);
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:5000/films/search?search=${search}`)
+        fetch(`http://localhost:5000/films/search?search=${search}`)
         .then((response) => response.json())
         .then((data) => {
             const filmsData = data.map(film => ({
@@ -22,6 +26,30 @@ function FilmsPage() {
         .catch((error) => console.error("Error fetching films:", error));
     }, [search]);
 
+    const getFilmCount = () => {
+        fetch("http://localhost:5000/films/inventory")
+        .then((res) => res.json())
+        .then((data) => setFilmCount(data.total_films))
+    };
+
+    useEffect(() => {
+        getFilmCount();
+    }, []);
+
+    const rentFilm = () => {
+        fetch("http://localhost:5000/rent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ film_id: filmID, customer_id: customerID }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setMessage(data.message);
+                getFilmCount();
+            })
+            .catch((err) => console.error("Error renting film:", err));
+    };
+
     return (
         <div className="films-page">
             <h1 className="films-title">Search for Films</h1>
@@ -32,6 +60,28 @@ function FilmsPage() {
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
             />
+
+            <div className="films-rent">
+                <h2>Rent Films to Customers</h2>
+                <div className="rent-form">
+                    <input
+                        type="number"
+                        placeholder="Film ID"
+                        value={filmID}
+                        onChange={(e) => setFilmID(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Customer ID"
+                        value={customerID}
+                        onChange={(e) => setCustomerID(e.target.value)}
+                    />
+                    <button onClick={rentFilm}>Rent Film</button>
+                </div>
+                {message && <p className="rent-message">{message}</p>}
+                <p className="film-count">Rentable Films: {filmCount}</p>
+            </div>
+
             <div className = "scrollable">
                 <table className="films-table">
                     <thead>
