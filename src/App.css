@@ -7,7 +7,7 @@ body {
 
 .Sakila-DB {
   color:#152734;
-  font-weight: 400;
+  font-weight: 500;
   font-family: Arial Narrow, sans-serif;
   text-align: center;
   margin: 30px 0 15px;
@@ -49,6 +49,7 @@ body {
 .film-item {
   text-align: center;
   font-size: 21px;
+  font-weight: 600;
   width: 150px;
   background-color: #fffcf4;
   border-radius: 14px;
