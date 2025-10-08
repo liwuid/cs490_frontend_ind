@@ -6,10 +6,13 @@ import "./App.css";
 function CustomersPage() {
     const [customers, setCustomers] = useState([]);
     const [pagination, setPagination] = useState({page: 1, pages: 1});
+    const [search, setSearch] = useState("");
+    const [sortBy, setSortBy] = useState("last_name");
+    const [sortOrder, setSortOrder] = useState("asc");
 
     const fetchCustomers = async (page=1) => {
         try {
-            const response = await fetch(`http://localhost:5000/customers?page=${page}`);
+            const response = await fetch(`http://localhost:5000/customers?page=${page}&search=${search}&sort_by=${sortBy}&sort_order=${sortOrder}`);
             const data = await response.json();
 
             const dataCustomers = data.customers.map((customer) => ({
@@ -27,22 +30,51 @@ function CustomersPage() {
     };
     useEffect(() => {
         fetchCustomers(1);
-    }, []);
+    }, [search, sortBy, sortOrder]);
 
     const pageChange = (event, value) => {
         fetchCustomers(value);
     };
 
+    const searchChange = (event) => {
+        setSearch(event.target.value)
+    };
+
+    const sortChange = (column) => {
+        if (sortBy === column) {
+            setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+        }
+        else {
+            setSortBy(column);
+            setSortOrder("asc");
+        }
+    };
+
     return (
         <div className="customer-page">
             <h1 className="customer-title">Customers</h1>
+            <div className="customer-search">
+                <input
+                    type="text"
+                    placeholder="Search by ID, first name, or last name"
+                    value={search}
+                    onChange={searchChange}
+                />
+            </div>
+
             <div className="customer-table-wrap">
                 <table className="customer-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th onClick={() => sortChange("customer_id")}>
+                                ID 
+                            </th>
+                            <th onClick={() => sortChange("first_name")}>
+                                First Name
+                            </th>
+                            <th onClick={() => sortChange("last_name")}>
+                                Last Name 
+                            </th>
                             <th>Email</th>
                         </tr>
                     </thead>

@@ -26,15 +26,15 @@ function FilmsPage() {
         .catch((error) => console.error("Error fetching films:", error));
     }, [search]);
 
-    const getFilmCount = () => {
-        fetch("http://localhost:5000/films/inventory")
+    const getFilmCount = (id) => {
+    if (!id) {
+        setFilmCount(0);
+        return;
+    }
+    fetch(`http://localhost:5000/films/inventory/${id}`)
         .then((res) => res.json())
-        .then((data) => setFilmCount(data.total_films))
+        .then((data) => setFilmCount(data.film_copies))
     };
-
-    useEffect(() => {
-        getFilmCount();
-    }, []);
 
     const rentFilm = () => {
         fetch("http://localhost:5000/rent", {
@@ -45,7 +45,7 @@ function FilmsPage() {
             .then((res) => res.json())
             .then((data) => {
                 setMessage(data.message);
-                getFilmCount();
+                getFilmCount(filmID);
             })
             .catch((err) => console.error("Error renting film:", err));
     };
@@ -68,7 +68,11 @@ function FilmsPage() {
                         type="number"
                         placeholder="Film ID"
                         value={filmID}
-                        onChange={(e) => setFilmID(e.target.value)}
+                        onChange={(e) => {
+                            const id = e.target.value;
+                            setFilmID(id);
+                            getFilmCount(id)
+                        }}
                     />
                     <input
                         type="number"

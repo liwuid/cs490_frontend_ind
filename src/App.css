@@ -138,6 +138,68 @@ body {
   margin-left: 10px;
 }
 
+.films-rent {
+  background: #ffffff;
+  padding: 18px;
+  width: 965px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid #b1b1b1;
+}
+
+.films-rent h2 {
+  margin-top: 0;
+  color: #27496d;
+  font-size: 1.3rem;
+}
+
+.rent-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rent-form input {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rent-form button {
+  background-color: #45466e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.rent-form button:hover {
+  background-color: rgb(70, 100, 132);
+}
+
+.rent-message {
+  color: #007e33;
+  font-weight: 500;
+}
+
+.film-count {
+  font-size: 0.95rem;
+  color: #555;
+}
+
 .films-table {
   width: 100%;
   table-layout: fixed;
