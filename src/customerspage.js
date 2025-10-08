@@ -67,13 +67,13 @@ function CustomersPage() {
                     <thead>
                         <tr>
                             <th onClick={() => sortChange("customer_id")}>
-                                ID 
+                                ID {sortBy === "customer_id" ? (sortOrder === "asc" ? "▲" : "▼") : "⇅"}
                             </th>
                             <th onClick={() => sortChange("first_name")}>
-                                First Name
+                                First Name {sortBy === "first_name" ? (sortOrder === "asc" ? "▲" : "▼") : "⇅"}
                             </th>
                             <th onClick={() => sortChange("last_name")}>
-                                Last Name 
+                                Last Name {sortBy === "last_name" ? (sortOrder === "asc" ? "▲" : "▼") : "⇅"}
                             </th>
                             <th>Email</th>
                         </tr>
