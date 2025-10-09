@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./App.css";
 
@@ -9,6 +10,7 @@ function FilmsPage() {
     const [customerID, setCustomerID] = useState("");
     const [message, setMessage] = useState("");
     const [filmCount, setFilmCount] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:5000/films/search?search=${search}`)
@@ -45,6 +47,7 @@ function FilmsPage() {
             .then((res) => res.json())
             .then((data) => {
                 setMessage(data.message);
+                setTimeout(() => setMessage(""), 4000);
                 getFilmCount(filmID);
             })
             .catch((err) => console.error("Error renting film:", err));
@@ -99,13 +102,12 @@ function FilmsPage() {
                     </thead>
                     <tbody>
                         {films.map((film) => (
-                            <tr key={film.id}>
+                            <tr key={film.id}
+                                className="clickable-row"
+                                onClick={() => navigate(`/film/${film.id}`)}
+                            >
                                 <td>{film.id}</td>
-                                <td>
-                                    <Link to={`/film/${film.id}`} className="film-link-table">
-                                        {film.title}
-                                    </Link>
-                                </td>
+                                <td>{film.title}</td>
                                 <td>{film.genre}</td>
                                 <td>{film.rating}</td>
                                 <td>{film.release_year}</td>

@@ -6,6 +6,10 @@ function CustomerDetailPage() {
     const [customer, setCustomer] = useState({});
     const [rentals, setRentals] = useState([]);
     const [form, setForm] = useState({});
+    const [returnForm, setReturn] = useState(false);
+    const [filmID, setFilmID] = useState("");
+    const [message, setMessage] = useState("");
+    const [formMessage, setFormMessage] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:5000/customers/${customer_id}`)
@@ -32,7 +36,34 @@ function CustomerDetailPage() {
             body: JSON.stringify(form)
         })
         .then(res => res.json())
-        .then(data => alert(data.message));
+        .then(data => {
+            setMessage(data.message);
+        })
+        .catch(err => {
+            setMessage("Error saving customer details");
+            setTimeout(() => setMessage(""), 4000);
+        });
+    };
+
+    const returnFilm = (e) => {
+        e.preventDefault();
+        fetch(`http://localhost:5000/customers/${customer_id}/return`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({ film_id: filmID }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message === "Film returned successfully!") {
+                setTimeout(() => setFormMessage(""), 4000);
+                setReturn(false); 
+                setFilmID("");
+                fetch(`http://localhost:5000/customers/${customer_id}/rentals`)
+                    .then(res => res.json())
+                    .then(data => setRentals(data));
+            }
+        })
+        .catch(() => setFormMessage("Error returning film"))
     };
 
     return (
@@ -51,11 +82,17 @@ function CustomerDetailPage() {
                 <input name="store_id" value={form.store_id || ""} onChange={change} placeholder="Store ID"/>
                 <button type="submit">Save</button>
             </form>
+            {message && <div className="update-message">{message}</div>}
 
-            <h2>Rental History</h2>
+            <div className="rental-header">
+                <h2>Rental History</h2>
+                <button onClick={() => setReturn(true)}>Return Film</button>
+            </div>
+
             <table>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Film</th>
                         <th>Rented</th>
                         <th>Returned</th>
@@ -64,6 +101,7 @@ function CustomerDetailPage() {
                 <tbody>
                     {rentals.map((rental, idx) => (
                         <tr key={idx}>
+                            <td>{rental.film_id}</td>
                             <td>{rental.title}</td>
                             <td>{new Date(rental.rental_date).toLocaleDateString()}</td>
                             <td>{rental.return_date ? new Date(rental.return_date).toLocaleDateString() : "————"}</td>
@@ -71,8 +109,33 @@ function CustomerDetailPage() {
                     ))}
                 </tbody>
             </table>
+            {returnForm && (
+                <div className="return-overlay">
+                    <div className="return-form">
+                        <h3>Return Film</h3>
+                        {formMessage && <div className="return-message">{formMessage}</div>}
+                        <form onSubmit={returnFilm}>
+                            <input
+                                type="number"
+                                placeholder="Film ID"
+                                value={filmID}
+                                onChange={(e) => setFilmID(e.target.value)}
+                                required
+                            />
+                            <div className="form-buttons">
+                                <button type="button" onClick={() => setReturn(false)}>
+                                    Cancel
+                                </button>
+                                <button type="submit">
+                                    Confirm
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+             )}
         </div>
-    )
+    );
 }
 
 export default CustomerDetailPage;
