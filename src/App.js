@@ -5,6 +5,7 @@ import ActorDetails from "./actordetails";
 import LandingPage from "./landingpage";
 import FilmsPage from "./filmspage";
 import CustomersPage from "./customerspage";
+import CustomerDetailPage from "./customerdetailpage";
 import './App.css';
 
 const theme = createTheme();
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/actor/:id" element={<ActorDetails />} />
                     <Route path="/films/search" element={<FilmsPage />} />
                     <Route path="/customers" element={<CustomersPage />} />
+                    <Route path="/customers/:customer_id" element={<CustomerDetailPage />} />
                 </Routes>
                 </div>
             </Router>

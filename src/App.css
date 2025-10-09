@@ -358,6 +358,15 @@ input[type=number]::-webkit-outer-spin-button {
   border: 1px solid #ddd
 }
 
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clickable-row:hover {
+  background-color: #e8e8e8; 
+}
+
 .pagination-wrap {
   display: flex;
   justify-content: center;

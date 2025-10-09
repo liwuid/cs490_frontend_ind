@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./App.css";
@@ -9,6 +10,7 @@ function CustomersPage() {
     const [search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState("last_name");
     const [sortOrder, setSortOrder] = useState("asc");
+    const navigate = useNavigate();
 
     const fetchCustomers = async (page=1) => {
         try {
@@ -82,9 +84,9 @@ function CustomersPage() {
                     <tbody>
                         {customers.map((customer) => (
                             <tr 
-                                key={customer.id}
                                 className="clickable-row"
-                                onClick={() => window.location.href = `/customer/${customer.id}`}
+                                key={customer.id} 
+                                onClick={() => navigate(`/customers/${customer.id}`)}
                             >
                                 <td>{customer.id}</td>
                                 <td>{customer.firstname}</td>
