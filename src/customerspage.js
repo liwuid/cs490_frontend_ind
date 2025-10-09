@@ -32,12 +32,12 @@ function CustomersPage() {
         fetchCustomers(1);
     }, [search, sortBy, sortOrder]);
 
-    const pageChange = (event, value) => {
+    const pageChange = (e, value) => {
         fetchCustomers(value);
     };
 
-    const searchChange = (event) => {
-        setSearch(event.target.value)
+    const searchChange = (e) => {
+        setSearch(e.target.value)
     };
 
     const sortChange = (column) => {
@@ -81,7 +81,11 @@ function CustomersPage() {
 
                     <tbody>
                         {customers.map((customer) => (
-                            <tr key={customer.id}>
+                            <tr 
+                                key={customer.id}
+                                className="clickable-row"
+                                onClick={() => window.location.href = `/customer/${customer.id}`}
+                            >
                                 <td>{customer.id}</td>
                                 <td>{customer.firstname}</td>
                                 <td>{customer.lastname}</td>
