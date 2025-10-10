@@ -103,13 +103,6 @@ body {
   color: #333;
 }
 
-.film-link:hover {
-  color: #feb103;
-}
-.film-link-table:hover {
-  color: #feb103;
-}
-
 .film-genre {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
