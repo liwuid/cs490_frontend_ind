@@ -10,6 +10,9 @@ function CustomersPage() {
     const [search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState("last_name");
     const [sortOrder, setSortOrder] = useState("asc");
+    const [addForm, setAddForm] = useState(false);
+    const [deleteForm, setDeleteForm] = useState(false);
+    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     const fetchCustomers = async (page=1) => {
@@ -52,9 +55,63 @@ function CustomersPage() {
         }
     };
 
+    const addUser = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newUser = {
+            first_name: formData.get("first_name"),
+            last_name: formData.get("last_name"),
+            email: formData.get("email"),
+            address: formData.get("address"),
+            city: formData.get("city"),
+            district: formData.get("district"),
+            postal_code: formData.get("postal_code"),
+            country: formData.get("country"),
+            phone: formData.get("phone"),
+            store_id: formData.get("store_id"),
+        };
+        try {
+            const response = await fetch("http://localhost:5000/customers", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newUser),
+            });
+            const data = await response.json();
+            setMessage(data.message);
+            setAddForm(false);
+            fetchCustomers(pagination.page);
+        } catch (error) {
+            setMessage("Error adding user");
+        }
+    };
+
+    const deleteUser = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const customer_id = formData.get("customer_id");
+
+        try {
+            const response = await fetch(`http://localhost:5000/customers/${customer_id}`, {
+                method: "DELETE",
+            });
+            const data = await response.json();
+            setMessage(data.message);
+            setDeleteForm(false);
+            fetchCustomers(pagination.page);
+        } catch (error) {
+            setMessage("Error deleting user");
+        }
+    };
+
     return (
         <div className="customer-page">
+          <div className="customer-header">
             <h1 className="customer-title">Customers</h1>
+            <div className="customer-buttons">
+                <button className="add-button" onClick={() => setAddForm(true)}>Add User</button>
+                <button className="delete-button" onClick={() => setDeleteForm(true)}>Delete User</button>
+            </div>
+          </div>
             <div className="customer-search">
                 <input
                     type="text"
@@ -105,6 +162,50 @@ function CustomersPage() {
                     color="standard"
                 />
             </Stack>
+
+            {addForm && (
+                <div className="add-overlay" onClick={() => setAddForm(false)}>
+                    <div className="add-content" onClick={(e) => e.stopPropagation()}>
+                        <h2>Add New Customer</h2>
+                        {message && <div className="form-message">{message}</div>}
+                        <form onSubmit={addUser}>
+                            <label>First Name:<input type="text" name="first_name" required /></label>
+                            <label>Last Name:<input type="text" name="last_name" required /></label>
+                            <label>Email:<input type="email" name="email" required /></label>
+                            <label>Address:<input type="text" name="address" required /></label>
+                            <label>City:<input type="text" name="city" required /></label>
+                            <label>District:<input type="text" name="district" required /></label>
+                            <label>Postal Code:<input type="text" name="postal_code" /></label>
+                            <label>Country:<input type="text" name="country" required /></label>
+                            <label>Phone:<input type="text" name="phone" required /></label>
+                            <label>Store ID:<input type="number" name="store_id" required /></label>
+
+                            <div className="form-buttons">
+                                <button type="button" onClick={() => setAddForm(false)}>Cancel</button>
+                                <button type="submit">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {deleteForm && (
+                <div className="form-overlay" onClick={() => setDeleteForm(false)}>
+                    <div className="form-content" onClick={(e) => e.stopPropagation()}>
+                        <h2>Delete Customer</h2>
+                        {message && <div className="form-message">{message}</div>}
+                        <form onSubmit={deleteUser}>
+                            <label>
+                                Customer ID: <input type="number" name="customer_id" required/>
+                            </label>
+                            <div className="form-buttons">
+                                <button type="button" onClick={() => setDeleteForm(false)}>Cancel</button>
+                                <button type="submit">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

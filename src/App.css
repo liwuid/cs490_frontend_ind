@@ -276,6 +276,36 @@ input[type=number]::-webkit-outer-spin-button {
   text-align: center;
 }
 
+.customer-header {
+  display: flex;
+  gap: 570px;
+  margin-left: 150px;
+  align-items: center;
+}
+
+.customer-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.customer-buttons .add-button,
+.customer-buttons .delete-button {
+  padding: 9px 25px;
+  border: none;
+  font-size: 18px;
+  background-color: #45466e;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-button:hover,
+.delete-button:hover {
+  background-color: rgb(70, 100, 132);
+}
+
+
 .customer-title {
   font-family: Georgia, serif;
   font-size: 38px;
@@ -378,11 +408,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 .customer-details button {
   grid-column: span 2;
-  padding: 12px 0;
-  background-color: #0078d7;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.25s ease;
@@ -434,7 +459,7 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: space-between; 
 }
 
-.return-overlay {
+.form-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -446,7 +471,7 @@ input[type=number]::-webkit-outer-spin-button {
     align-items: center;
 }
 
-.return-form {
+.form-content {
     background: white;
     padding: 20px 50px;
     border-radius: 10px;
@@ -456,12 +481,12 @@ input[type=number]::-webkit-outer-spin-button {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.return-form h3 {
+.form-content h3 {
     font-size: 23px;
     margin-bottom: 30px;
 }
 
-.return-form input {
+.form-content input {
     width: 100%;
     padding: 10px;
     margin-bottom: 30px;

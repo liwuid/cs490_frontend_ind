@@ -110,10 +110,10 @@ function CustomerDetailPage() {
                 </tbody>
             </table>
             {returnForm && (
-                <div className="return-overlay">
-                    <div className="return-form">
+                <div className="form-overlay">
+                    <div className="form-content">
                         <h3>Return Film</h3>
-                        {formMessage && <div className="return-message">{formMessage}</div>}
+                        {formMessage && <div className="form-message">{formMessage}</div>}
                         <form onSubmit={returnFilm}>
                             <input
                                 type="number"
