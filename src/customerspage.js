@@ -55,6 +55,14 @@ function CustomersPage() {
         }
     };
 
+    const handleMessage = (msg, closeForm) => {
+    setMessage(msg);
+    setTimeout(() => {
+        setMessage("");
+        closeForm(false);
+    }, 2000);
+    };
+
     const addUser = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -77,8 +85,7 @@ function CustomersPage() {
                 body: JSON.stringify(newUser),
             });
             const data = await response.json();
-            setMessage(data.message);
-            setAddForm(false);
+            handleMessage(data.message, setAddForm);
             fetchCustomers(pagination.page);
         } catch (error) {
             setMessage("Error adding user");
@@ -95,8 +102,7 @@ function CustomersPage() {
                 method: "DELETE",
             });
             const data = await response.json();
-            setMessage(data.message);
-            setDeleteForm(false);
+            handleMessage(data.message, setDeleteForm);
             fetchCustomers(pagination.page);
         } catch (error) {
             setMessage("Error deleting user");
@@ -162,11 +168,12 @@ function CustomersPage() {
                     color="standard"
                 />
             </Stack>
-
+            
+            {message && <div className="form-message">{message}</div>}
             {addForm && (
                 <div className="add-overlay" onClick={() => setAddForm(false)}>
                     <div className="add-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Add New Customer</h2>
+                        <h3>Add New Customer</h3>
                         {message && <div className="form-message">{message}</div>}
                         <form onSubmit={addUser}>
                             <label>First Name:<input type="text" name="first_name" required /></label>
@@ -189,15 +196,19 @@ function CustomersPage() {
                 </div>
             )}
 
+            {message && <div className="form-message">{message}</div>}
             {deleteForm && (
-                <div className="form-overlay" onClick={() => setDeleteForm(false)}>
-                    <div className="form-content" onClick={(e) => e.stopPropagation()}>
-                        <h2>Delete Customer</h2>
+                <div className="delete-overlay" onClick={() => setDeleteForm(false)}>
+                    <div className="delete-content" onClick={(e) => e.stopPropagation()}>
+                        <h3>Delete Customer</h3>
                         {message && <div className="form-message">{message}</div>}
                         <form onSubmit={deleteUser}>
-                            <label>
-                                Customer ID: <input type="number" name="customer_id" required/>
-                            </label>
+                            <input 
+                                type="number" 
+                                placeholder="Customer ID"
+                                name="customer_id" 
+                                required
+                            />
                             <div className="form-buttons">
                                 <button type="button" onClick={() => setDeleteForm(false)}>Cancel</button>
                                 <button type="submit">Confirm</button>

@@ -97,16 +97,16 @@ body {
 }
 
 .film-link {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 23px;
   text-decoration: none;
-  color: #333;
+  color: #1e1e1e;
 }
 
 .film-genre {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  color: #000000;
+  color: #1e1e1e;
 }
 
 .scrollable {
@@ -125,10 +125,40 @@ body {
 }
 
 .film-details {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
-  height: 700px;
-  margin-left: 10px;
+  max-width: 600px;
+  height: 494px;
+  margin: 60px auto;
+  padding: 30px 50px;
+  background: #ffffff;
+  border-radius: 17px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1e1e1e;
+}
+
+.film-details h1 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  margin-bottom: 25px;
+  color: #b02415;
+  text-align: center;
+  border-bottom: 2px solid #e6e6e6;
+  padding-bottom: 10px;
+}
+
+.film-details p {
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 90px;
+  text-align: right;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 12px;
+}
+
+.film-details p strong {
+  font-weight: 700;
+  color: #1e1e1e;
 }
 
 .films-rent {
@@ -216,6 +246,10 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: none;
 }
 
+.film-link-table:hover {
+  color: #ff7b00;
+}
+
 .page-button {
   background-color: #f0f0f0;
   border: 0.5px solid #ccc;
@@ -226,7 +260,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .active.page {
-  background-color: #ff7b00;
   color: white;
   border: none;
 }
@@ -240,10 +273,56 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .actor-details {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
-  height: 700px;
-  margin-left: 10px;
+  max-width: 900px;
+  height: 513px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.actor-details h1 {
+  font-family: Georgia, serif;
+  color: #b02415;
+  margin-top: 0;
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.actor-details h2,
+.actor-details h3 {
+  font-family: Georgia, serif;
+  color: #1e1e1e;
+  margin-top: 0;
+}
+
+.actor-details h2 {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.actor-details h3 {
+  font-size: 20px;
+  margin: 0 0 13px;
+}
+
+.actor-details p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 4px 0;
+}
+
+.actor-details strong {
+  color: #1e1e1e;
+}
+
+.film-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .actor-name {
@@ -304,7 +383,6 @@ input[type=number]::-webkit-outer-spin-button {
 .delete-button:hover {
   background-color: rgb(70, 100, 132);
 }
-
 
 .customer-title {
   font-family: Georgia, serif;
@@ -474,8 +552,9 @@ input[type=number]::-webkit-outer-spin-button {
 .form-content {
     background: white;
     padding: 20px 50px;
-    border-radius: 10px;
+    border-radius: 17px;
     max-width: 390px;
+    min-height: 230px;
     width: 90%;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -494,16 +573,32 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .form-buttons {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .form-buttons button {
-    width: 180px;
-    color:black;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: #e0e0e0;      
+  color: #000000;
+}
+
+.form-message {
+  background: #e8f5e9;
+  color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .form-buttons button[type="button"] {
@@ -512,6 +607,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .form-buttons button[type="submit"] {
     background: #c7dbc4;
+}
+
+.form-buttons button:hover {
+    opacity: 0.85;
 }
 
 .update-message {
@@ -581,4 +680,108 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #5c5d89;
   color: #f4f4f4;
   
+}
+
+.add-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.502);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-content {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 17px;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+}
+
+.add-content h3 {
+  font-size: 23px;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.add-content form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 25px;
+  text-align: left;
+}
+
+.add-content label {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.add-content input {
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-content input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  outline: none;
+}
+
+.delete-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 24, 24, 0.502);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-content {
+    background: white;
+    padding: 20px 50px;
+    border-radius: 17px;
+    max-width: 390px;
+    min-height: 230px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.delete-content h3 {
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+
+.delete-content input {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 45px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.delete-message {
+  margin-top: -10px;
+  margin-bottom: 30px;
+  font-weight: 500;
 }
