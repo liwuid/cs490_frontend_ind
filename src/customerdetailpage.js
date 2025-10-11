@@ -39,6 +39,7 @@ function CustomerDetailPage() {
         .then(res => res.json())
         .then(data => {
             setMessage(data.message);
+            setTimeout(() => setMessage(""), 4000);
         })
         .catch(err => {
             setMessage("Error saving customer details");

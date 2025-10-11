@@ -220,9 +220,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .films-table {
   width: 100%;
-  table-layout: fixed;
   border-collapse: collapse;
-  margin-bottom: 40px;
+  table-layout: fixed;
   background-color:white;
 }
 

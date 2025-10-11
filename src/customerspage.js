@@ -181,7 +181,7 @@ function CustomersPage() {
                             <label>Email:<input type="email" name="email" required /></label>
                             <label>Address:<input type="text" name="address" required /></label>
                             <label>City:<input type="text" name="city" required /></label>
-                            <label>District:<input type="text" name="district" required /></label>
+                            <label>District:<input type="text" name="state" required /></label>
                             <label>Postal Code:<input type="text" name="postal_code" /></label>
                             <label>Country:<input type="text" name="country" required /></label>
                             <label>Phone:<input type="text" name="phone" required /></label>
