@@ -169,7 +169,6 @@ function CustomersPage() {
                 />
             </Stack>
             
-            {message && <div className="form-message">{message}</div>}
             {addForm && (
                 <div className="add-overlay" onClick={() => setAddForm(false)}>
                     <div className="add-content" onClick={(e) => e.stopPropagation()}>
@@ -181,7 +180,7 @@ function CustomersPage() {
                             <label>Email:<input type="email" name="email" required /></label>
                             <label>Address:<input type="text" name="address" required /></label>
                             <label>City:<input type="text" name="city" required /></label>
-                            <label>District:<input type="text" name="state" required /></label>
+                            <label>State:<input type="text" name="district" required /></label>
                             <label>Postal Code:<input type="text" name="postal_code" /></label>
                             <label>Country:<input type="text" name="country" required /></label>
                             <label>Phone:<input type="text" name="phone" required /></label>
@@ -196,7 +195,6 @@ function CustomersPage() {
                 </div>
             )}
 
-            {message && <div className="form-message">{message}</div>}
             {deleteForm && (
                 <div className="delete-overlay" onClick={() => setDeleteForm(false)}>
                     <div className="delete-content" onClick={(e) => e.stopPropagation()}>
